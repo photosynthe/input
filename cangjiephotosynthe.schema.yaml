@@ -1,0 +1,49 @@
+schema:
+  schema_id: cangjiephotosynthe
+  name: 倉頡
+  version: 1.0.0
+  author:
+    - 光能合成者 telegram@made_light
+  description: 倉頡輸入法
+
+engine:
+  processors:
+    - ascii_composer #中英切換，必須在speller前
+    - speller #輸入輸出轉換
+    - selector #選字，必須在express_editor前
+    - punctuator #標點符號控制，必須在express_editor前
+    - express_editor #輸出鍵，必須在speller後
+  segmentors:
+    - abc_segmentor
+    - punct_segmentor
+  translators:
+    - script_translator
+    - punct_translator
+
+speller:
+  alphabet: qwertyuiopasdfghjklzxcvbnm
+
+menu:
+  page_size: 9
+  alternative_select_keys: 123456789
+
+editor:
+  bindings:
+    Return: commit_script_text
+    Tab: commit_raw_input
+
+switches:
+  - name: ascii_mode
+    states: [中文,英文]
+  - name: full_shape
+    states: [半形,全形]
+
+translator:
+  dictionary: cangjiephotosynthe
+
+punctuator:
+  use_space: true
+  half_shape:
+    " ": " "
+  full_shape:
+    " ": " "
